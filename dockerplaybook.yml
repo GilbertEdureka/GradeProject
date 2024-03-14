@@ -11,3 +11,13 @@
         docker build -t newtomcat /root/GradeProject/
       tags:
         - build_image
+
+    - name: Run Docker Container
+      docker_container:
+        name: tomcatcontainer
+        image: newtomcat
+        state: started
+        ports:
+          - "8090:8080"
+      tags:
+        - run_container

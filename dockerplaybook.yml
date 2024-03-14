@@ -10,7 +10,6 @@
     - name: Build Docker image from Dockerfile
       shell: |
         docker build -t newtomcat /root/GradeProject/
-      push: true
       tags:
         - build_image
 

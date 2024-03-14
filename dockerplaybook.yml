@@ -1,5 +1,5 @@
 - name: Build Docker image
-  hosts: web
+  hosts: App
   become: yes
   vars:
     ansible_user: root

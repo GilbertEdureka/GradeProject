@@ -9,7 +9,7 @@
   tasks:
     - name: Build Docker image from Dockerfile
       shell: |
-        docker build -t abctechnologies /etc/ansible/
+        docker build -t abctechnologies /root/GradeProject/
       tags:
         - build_image
     - name: Docker create tag image

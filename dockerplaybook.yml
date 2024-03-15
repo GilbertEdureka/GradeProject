@@ -17,9 +17,11 @@
     - name: Push Docker image to registry
       docker_image:
         name: abctechnologies
-        tag: gilbertromero
+        tag: latest
+        source: local
+        repository: gilbertromero/abctechnologies
         push: yes
       tags:
         - push_image
     - name: Run Docker Container
-      command: docker run -d -p 8090:8080 abctechnologies
+      command: docker run -d -p 8090:8080 gilbertromero/abctechnologies

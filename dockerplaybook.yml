@@ -9,9 +9,17 @@
   tasks:
     - name: Build Docker image from Dockerfile
       shell: |
-        docker build -t newtomcat /root/GradeProject/
+        docker build -t abctechnologies /etc/ansible/
       tags:
         - build_image
-
+    - name: Docker create tag image
+      command: docker tag abctechnologies gilbertromero/abctechnologies
+    - name: Push Docker image to registry
+      docker_image:
+        name: abctechnologies
+        tag: gilbertromero
+        push: yes
+      tags:
+        - push_image
     - name: Run Docker Container
-      command: docker run -d -p 8090:8080 newtomcat
+      command: docker run -d -p 8090:8080 abctechnologies

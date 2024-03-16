@@ -8,13 +8,6 @@
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 
   tasks:
-    - name: Remove existing WAR file if it exists
-      file:
-        path: /root/GradeProject/target/
-        state: absent
-      ignore_errors: yes
-      tags:
-        - remove_war_file
     - name: Copy WAR file to host directory
       copy:
         src: /var/lib/jenkins/workspace/package_docker/target
@@ -23,7 +16,7 @@
         - copy_war_file
     - name: Build Docker image from Dockerfile
       shell: |
-        docker build -t abctechnologies /root/GradeProject/
+        docker build -t gilbertromero/abctechnologies /root/GradeProject/
       tags:
         - build_image
     - name: Docker create tag image

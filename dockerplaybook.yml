@@ -9,7 +9,7 @@
   tasks:
     - name: Copy WAR file to host directory
       copy:
-        src: **/*.war
+        src: /var/lib/jenkins/workspace/package_docker/target/ABCtechnologies-1.0.war
         dest: /root/GradeProject/
       tags:
         - copy_war_file

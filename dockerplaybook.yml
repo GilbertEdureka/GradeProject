@@ -1,3 +1,4 @@
+
 - name: Build Docker image
   hosts: web
   become: yes
@@ -7,9 +8,16 @@
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 
   tasks:
+    - name: Remove existing WAR file if it exists
+      file:
+        path: /root/GradeProject/target/
+        state: absent
+      ignore_errors: yes
+      tags:
+        - remove_war_file
     - name: Copy WAR file to host directory
       copy:
-        src: /var/lib/jenkins/workspace/package_docker/target/ABCtechnologies-1.0.war
+        src: /var/lib/jenkins/workspace/package_docker/target
         dest: /root/GradeProject/
       tags:
         - copy_war_file
@@ -31,3 +39,4 @@
         - push_image
     - name: Run Docker Container
       command: docker run -d -p 8090:8080 abctechnologies
+

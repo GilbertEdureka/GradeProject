@@ -19,11 +19,9 @@
         docker build -t gilbertromero/abctechnologies /root/GradeProject/
       tags:
         - build_image
-    - name: Docker create tag image
-      command: docker tag abctechnologies gilbertromero/abctechnologies
     - name: Push Docker image to registry
       docker_image:
-        name: abctechnologies
+        name: gilbertromero/abctechnologies
         tag: latest
         source: local
         repository: gilbertromero/abctechnologies

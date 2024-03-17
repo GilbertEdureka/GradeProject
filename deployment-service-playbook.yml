@@ -1,0 +1,14 @@
+- name: Create deployment and service
+  hosts: localhost
+  become: yes
+  vars:
+    ansible_user: root
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  tasks:
+    - name: Create a Deployment by reading the definition from a local file
+      command: kubectl apply -f /root/GradeProject/deployment.yml
+
+    - name: Create a Service by reading the definition from a local file
+      command: kubectl apply -f /root/GradeProject/service.yml

@@ -28,6 +28,6 @@
         push: yes
       tags:
         - push_image
-    - name: Run Docker Container
-      command: docker run -d -p 8090:8080 gilbertromero/abctechnologies
+#  - name: Run Docker Container
+#    command: docker run -d -p 8090:8080 gilbertromero/abctechnologies
 

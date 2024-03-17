@@ -7,6 +7,26 @@
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 
   tasks:
+    - name: Copy WAR file to host directory
+      copy:
+        src: /var/lib/jenkins/workspace/package_docker/target
+        dest: /root/GradeProject/
+      tags:
+        - copy_war_file
+    - name: Build Docker image from Dockerfile
+      shell: |
+        docker build -t gilbertromero/abctechnologies /root/GradeProject/
+      tags:
+        - build_image
+    - name: Push Docker image to registry
+      docker_image:
+        name: gilbertromero/abctechnologies
+        tag: latest
+        source: local
+        repository: gilbertromero/abctechnologies
+        push: yes
+      tags:
+        - push_image
     - name: Create a Deployment by reading the definition from a local file
       command: kubectl apply -f /root/GradeProject/deployment.yml
 

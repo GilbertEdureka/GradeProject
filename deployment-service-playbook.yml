@@ -1,3 +1,4 @@
+- name: Create deployment and service
   hosts: localhost
   become: yes
   vars:
@@ -11,4 +12,3 @@
 
     - name: Create a Service by reading the definition from a local file
       command: kubectl apply -f /root/GradeProject/service.yml
-
